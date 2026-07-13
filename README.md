@@ -1,8 +1,8 @@
-# CS First Year: Data Structures Basics
+# CS First Year Learning
 
-This repository records the first stage of my CS self-study with Python.
+This repository records my CS self-study with Python, organized chapter by chapter as I build my foundations.
 
-The focus of this stage is learning how to use basic Python data structures to analyze small records and solve beginner-level data processing problems.
+The current chapters focus on basic data structures, data processing, stacks, and queues.
 
 ## Topics
 
@@ -15,6 +15,9 @@ The focus of this stage is learning how to use basic Python data structures to a
 - counting records
 - filtering records
 - ranking by calculated values
+- stack operations
+- queue operations
+- bracket matching and error location
 
 ## Exercises
 
@@ -52,17 +55,39 @@ Practice goals:
 - filter long borrow records
 - collect unique book titles
 
+### Stack and Queue
+
+Files:
+
+```text
+02_stack_queue/browser_history_stack.py
+02_stack_queue/printer_queue.py
+02_stack_queue/bracket_checker.py
+02_stack_queue/bracket_error_locator.py
+```
+
+Practice goals:
+
+- use a stack for browser back-history behavior
+- use a queue to process print jobs in arrival order
+- check whether brackets are balanced with a stack
+- store bracket positions to report where an error occurs
+
 ## How to Run
 
 ```bash
-cd "/Users/eden1969/Documents/CS-First-Year-Data-Structures-Basics/01_data_structures_basics"
-python3 student_grade_analyzer.py
-python3 library_borrow_analyzer.py
+cd "/Users/eden1969/Documents/CS-First-Year-Data-Structures-Basics"
+python3 01_data_structures_basics/student_grade_analyzer.py
+python3 01_data_structures_basics/library_borrow_analyzer.py
+python3 02_stack_queue/browser_history_stack.py
+python3 02_stack_queue/printer_queue.py
+python3 02_stack_queue/bracket_checker.py
+python3 02_stack_queue/bracket_error_locator.py
 ```
 
 ## Learning Reflection
 
-At this stage, I practiced moving from basic Python syntax to small data analysis tasks.
+At this stage, I practiced moving from basic Python syntax to small data analysis tasks and core linear data structures.
 
 The most important idea was learning to choose the right data structure:
 
@@ -70,6 +95,7 @@ The most important idea was learning to choose the right data structure:
 - use `set` for uniqueness
 - use `list` for ordered records
 - use `sorted(..., key=...)` for ranking
+- use a stack for last-in, first-out behavior
+- use a queue for first-in, first-out behavior
 
 This is the first part of a longer CS foundation learning process.
-
