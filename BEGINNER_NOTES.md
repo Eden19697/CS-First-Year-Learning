@@ -96,3 +96,60 @@ Things to check:
 - ties in ranking
 - filtering when no record matches
 
+## 7. Linked list: check the head first
+
+In a linked list, `self.head` is special because it is the only direct entry point.
+
+For deletion, check these cases in order:
+
+```python
+if self.head is None:
+    return False
+
+if self.head.value == value:
+    self.head = self.head.next
+    return True
+```
+
+Why:
+
+- an empty list has no node to inspect
+- deleting the head does not have a previous node to reconnect
+
+## 8. Save `next` before reversing a node
+
+During linked-list reversal, changing `current.next` too early can lose the rest of the list.
+
+Wrong idea:
+
+```python
+current.next = prev
+current = current.next
+```
+
+Why it is wrong:
+
+After the first line, `current.next` points backward, so the original next node is lost.
+
+Correct pattern:
+
+```python
+next_node = current.next
+current.next = prev
+prev = current
+current = next_node
+```
+
+## 9. Traversal always moves the current node
+
+Most linked-list operations use this structure:
+
+```python
+current = self.head
+
+while current is not None:
+    # use current.value
+    current = current.next
+```
+
+If `current = current.next` is forgotten, the loop never moves forward.
