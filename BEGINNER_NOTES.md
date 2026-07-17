@@ -153,3 +153,53 @@ while current is not None:
 ```
 
 If `current = current.next` is forgotten, the loop never moves forward.
+
+## 10. Every recursive function needs a base case
+
+A recursive function that never stops calling itself will crash with a `RecursionError`.
+
+```python
+def factorial(n):
+    if n == 0:
+        return 1
+    return n * factorial(n - 1)
+```
+
+Why:
+
+- the base case (`n == 0`) stops the recursion
+- the recursive case (`n * factorial(n - 1)`) must move toward the base case, not away from it
+
+## 11. Binary search only works on a sorted list
+
+```python
+left = 0
+right = len(numbers) - 1
+
+while left <= right:
+    mid = (left + right) // 2
+    if numbers[mid] == target:
+        return mid
+    elif numbers[mid] < target:
+        left = mid + 1
+    else:
+        right = mid - 1
+
+return -1
+```
+
+Why:
+
+- binary search decides which half to keep by comparing to the middle value
+- that comparison only makes sense if the list is already sorted
+
+## 12. O(n²) vs O(n log n) is about how work grows
+
+Selection sort and insertion sort compare pairs of elements over and over, so the work grows roughly with `n * n`.
+
+Merge sort splits the list in half at each level of recursion, so it only does about `log n` levels of work, each level touching all `n` elements: `n * log n`.
+
+Why it matters:
+
+- for small lists the difference barely shows
+- for large lists, O(n log n) finishes far sooner than O(n²)
