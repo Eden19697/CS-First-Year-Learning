@@ -203,3 +203,72 @@ Why it matters:
 
 - for small lists the difference barely shows
 - for large lists, O(n log n) finishes far sooner than O(n²)
+
+## 13. Tree recursion checks `root is None` first
+
+Every recursive tree function needs an answer for an empty subtree.
+
+```python
+if root is None:
+    return ...
+```
+
+The return value depends on the question:
+
+```python
+# traversal
+return []
+
+# node count or tree height
+return 0
+
+# search
+return False
+
+# balance check
+return True
+```
+
+Without this base case, recursion eventually tries to access `root.value` when `root` is `None`.
+
+## 14. Match the recursive operator to the question
+
+```text
+How many nodes?        Use +
+Does a target exist?   Use or
+How tall is the tree?  Use max
+```
+
+Examples:
+
+```python
+count = 1 + count_nodes(root.left) + count_nodes(root.right)
+found = search_tree(root.left, target) or search_tree(root.right, target)
+height = 1 + max(tree_height(root.left), tree_height(root.right))
+```
+
+## 15. A BST needs lower and upper bounds
+
+Checking only direct children is not enough for BST validation. Every node must satisfy:
+
+```text
+lower < node.value < upper
+```
+
+When moving left, update `upper` to the current value. When moving right, update `lower` to the current value.
+
+```python
+is_valid_bst(root.left, lower, root.value)
+is_valid_bst(root.right, root.value, upper)
+```
+
+## 16. BST deletion has three cases
+
+After finding the node to delete:
+
+```text
+No children: return None
+One child: return the existing child
+Two children: replace with the minimum value in the right subtree,
+              then delete that successor node
+```
