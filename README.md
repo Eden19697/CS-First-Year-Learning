@@ -2,7 +2,7 @@
 
 This repository records my CS self-study with Python, organized chapter by chapter as I build my foundations.
 
-The current chapters focus on basic data structures, data processing, stacks, queues, linked lists, recursion, and searching/sorting algorithms.
+The current chapters focus on basic data structures, data processing, linear data structures, recursion, searching/sorting algorithms, and tree-based structures.
 
 ## Topics
 
@@ -23,6 +23,9 @@ The current chapters focus on basic data structures, data processing, stacks, qu
 - binary search
 - selection sort, insertion sort, merge sort
 - time complexity (O(n), O(n²), O(n log n), O(log n))
+- binary tree traversals and analysis
+- breadth-first traversal with a queue
+- binary search tree operations
 
 ## Exercises
 
@@ -117,6 +120,25 @@ Practice goals:
 - sort with merge sort by combining recursion and merging, achieving O(n log n)
 - compare algorithm efficiency instead of only checking correctness
 
+### Trees and Binary Search Trees
+
+Files:
+
+```text
+05_trees/binary_tree_traversal.py
+05_trees/binary_search_tree.py
+05_trees/tree_review_drill.py
+05_trees/README.md
+```
+
+Practice goals:
+
+- implement preorder, inorder, postorder, and level-order traversal
+- count nodes, calculate height, search a tree, and check balance
+- implement BST insertion, search, minimum, maximum, validation, and deletion
+- use lower and upper bounds to validate the full BST property
+- distinguish recursive aggregation with `+`, `or`, and `max`
+
 ## How to Run
 
 ```bash
@@ -134,6 +156,9 @@ python3 04_recursion_search_sort/binary_search.py
 python3 04_recursion_search_sort/selection_sort.py
 python3 04_recursion_search_sort/insertion_sort.py
 python3 04_recursion_search_sort/merge_sort.py
+python3 05_trees/binary_tree_traversal.py
+python3 05_trees/binary_search_tree.py
+python3 05_trees/tree_review_drill.py
 ```
 
 ## Learning Reflection
@@ -152,5 +177,6 @@ The most important idea was learning to choose the right data structure:
 - use a base case and a recursive case to define a recursive function
 - use binary search instead of linear search when a list is already sorted
 - notice the difference between O(n²) sorting and O(n log n) sorting
+- use recursive structure and invariants to traverse and validate trees
 
 This is the first part of a longer CS foundation learning process.
