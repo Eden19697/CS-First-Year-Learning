@@ -2,7 +2,7 @@
 
 This repository records my CS self-study with Python, organized chapter by chapter as I build my foundations.
 
-The current chapters focus on basic data structures, data processing, linear data structures, recursion, searching/sorting algorithms, and tree-based structures.
+The current chapters focus on basic data structures, data processing, linear data structures, recursion, searching/sorting algorithms, tree-based structures, and hash tables.
 
 ## Topics
 
@@ -26,6 +26,8 @@ The current chapters focus on basic data structures, data processing, linear dat
 - binary tree traversals and analysis
 - breadth-first traversal with a queue
 - binary search tree operations
+- hash-table lookup with `dict` and `set`
+- duplicate detection, counting, grouping, and set intersection
 
 ## Exercises
 
@@ -139,6 +141,28 @@ Practice goals:
 - use lower and upper bounds to validate the full BST property
 - distinguish recursive aggregation with `+`, `or`, and `max`
 
+### Hash Tables
+
+Files:
+
+```text
+06_hash_table/contains_duplicate.py
+06_hash_table/two_sum.py
+06_hash_table/valid_anagram.py
+06_hash_table/group_anagrams.py
+06_hash_table/intersection.py
+06_hash_table/first_unique_char.py
+06_hash_table/README.md
+```
+
+Practice goals:
+
+- use a `set` for fast membership checks and duplicate detection
+- use a `dict` to store counts or the index of a previously seen value
+- group anagrams by using sorted letters as a shared key
+- find common values with set-based lookup
+- preserve original order when finding the first unique character
+
 ## How to Run
 
 ```bash
@@ -159,6 +183,12 @@ python3 04_recursion_search_sort/merge_sort.py
 python3 05_trees/binary_tree_traversal.py
 python3 05_trees/binary_search_tree.py
 python3 05_trees/tree_review_drill.py
+python3 06_hash_table/contains_duplicate.py
+python3 06_hash_table/two_sum.py
+python3 06_hash_table/valid_anagram.py
+python3 06_hash_table/group_anagrams.py
+python3 06_hash_table/intersection.py
+python3 06_hash_table/first_unique_char.py
 ```
 
 ## Learning Reflection
@@ -178,5 +208,8 @@ The most important idea was learning to choose the right data structure:
 - use binary search instead of linear search when a list is already sorted
 - notice the difference between O(n²) sorting and O(n log n) sorting
 - use recursive structure and invariants to traverse and validate trees
+- use a set when the key question is "have I seen this value?"
+- use a dictionary when a value needs related information such as a count, index, or group
 
 This is the first part of a longer CS foundation learning process.
+
