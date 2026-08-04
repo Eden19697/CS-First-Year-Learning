@@ -58,3 +58,38 @@ if needed in seen:
 seen[value] = index
 ```
 
+## Files: CSV and JSON
+
+### CSV values come back as strings
+
+Even a column that looks numeric, like `"85"`, is read as a string. Convert it before doing math:
+
+```python
+score = int(row["score"])
+```
+
+### `round()` works on one number, not a whole dictionary
+
+Round each value *as it is stored*, not by calling `round()` on the finished dictionary — a `dict` has no
+`__round__` method and raises a `TypeError`.
+
+```python
+# Wrong: round(averages) fails, averages is a dict
+averages[name] = average
+return round(averages)
+
+# Right: round the single number before storing it
+averages[name] = round(average, 2)
+return averages
+```
+
+### "At least one" means `> 0`, not `> 1`
+
+A condition meant to catch "failed at least one subject" must use `> 0` (or just check truthiness). Using `> 1`
+silently drops anyone who only failed exactly one thing.
+
+```python
+if failed_subject:        # correct: true for 1 or more items
+    failed[name] = failed_subject
+```
+

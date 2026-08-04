@@ -2,7 +2,7 @@
 
 This repository records my CS self-study with Python, organized chapter by chapter as I build my foundations.
 
-The current chapters focus on basic data structures, data processing, linear data structures, recursion, searching/sorting algorithms, tree-based structures, and hash tables.
+The current chapters focus on basic data structures, data processing, linear data structures, recursion, searching/sorting algorithms, tree-based structures, hash tables, and file I/O.
 
 ## Topics
 
@@ -28,6 +28,8 @@ The current chapters focus on basic data structures, data processing, linear dat
 - binary search tree operations
 - hash-table lookup with `dict` and `set`
 - duplicate detection, counting, grouping, and set intersection
+- reading and writing CSV files with the `csv` module
+- reading and writing JSON files with the `json` module
 
 ## Exercises
 
@@ -163,6 +165,24 @@ Practice goals:
 - find common values with set-based lookup
 - preserve original order when finding the first unique character
 
+### Files (CSV and JSON)
+
+Files:
+
+```text
+07_files_csv_json/csv_score_analyzer.py
+07_files_csv_json/json_student_analyzer.py
+07_files_csv_json/README.md
+```
+
+Practice goals:
+
+- read rows from a CSV file with `csv.DictReader` and convert string values to numbers
+- group and average scores by student, then write results back with `csv.writer`
+- read nested records from a JSON file with `json.load`
+- compute per-student averages and collect students with failing subjects
+- write a structured summary back to disk with `json.dump`
+
 ## How to Run
 
 ```bash
@@ -191,6 +211,14 @@ python3 06_hash_table/intersection.py
 python3 06_hash_table/first_unique_char.py
 ```
 
+Chapter 07 reads and writes files using relative filenames, so it must be run from inside its own folder instead of the repository root:
+
+```bash
+cd 07_files_csv_json
+python3 csv_score_analyzer.py
+python3 json_student_analyzer.py
+```
+
 ## Learning Reflection
 
 At this stage, I practiced moving from basic Python syntax to small data analysis tasks and core linear data structures.
@@ -210,6 +238,8 @@ The most important idea was learning to choose the right data structure:
 - use recursive structure and invariants to traverse and validate trees
 - use a set when the key question is "have I seen this value?"
 - use a dictionary when a value needs related information such as a count, index, or group
+- read structured data with `csv.DictReader` / `json.load`, and remember CSV values arrive as strings
+- round or transform a value before storing it, not by operating on the whole collection afterward
 
 This is the first part of a longer CS foundation learning process.
 

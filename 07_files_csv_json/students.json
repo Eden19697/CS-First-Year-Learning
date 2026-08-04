@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Alice",
+        "scores": {
+            "Math": 85,
+            "Physics": 91,
+            "Chemistry": 79
+        }
+    },
+    {
+        "name": "Bob",
+        "scores": {
+            "Math": 72,
+            "Physics": 68,
+            "Chemistry": 74
+        }
+    },
+    {
+        "name": "Charlie",
+        "scores": {
+            "Math": 95,
+            "Physics": 88
+        }
+    },
+    {
+        "name": "David",
+        "scores": {
+            "Math": 60,
+            "Physics": 65
+        }
+    }
+]
