@@ -2,7 +2,7 @@
 
 This repository records my CS self-study with Python, organized chapter by chapter as I build my foundations.
 
-The current chapters focus on basic data structures, data processing, linear data structures, recursion, searching/sorting algorithms, tree-based structures, hash tables, and file I/O.
+The current chapters focus on basic data structures, data processing, linear data structures, recursion, searching/sorting algorithms, tree-based structures, hash tables, file I/O, and object-oriented mini-projects.
 
 ## Topics
 
@@ -30,6 +30,8 @@ The current chapters focus on basic data structures, data processing, linear dat
 - duplicate detection, counting, grouping, and set intersection
 - reading and writing CSV files with the `csv` module
 - reading and writing JSON files with the `json` module
+- classes with instance state (`self.`), auto-incrementing ids, and linear search by id
+- combining a class with JSON persistence to build a small working program
 
 ## Exercises
 
@@ -183,6 +185,24 @@ Practice goals:
 - compute per-student averages and collect students with failing subjects
 - write a structured summary back to disk with `json.dump`
 
+### OOP Mini-Projects
+
+Files:
+
+```text
+08_oop_projects/todo_manager.py
+08_oop_projects/library_manager.py
+08_oop_projects/README.md
+```
+
+Practice goals:
+
+- store a list of dictionaries as instance state on `self.`
+- generate ids automatically and keep them collision-free across saves and loads
+- add, update, delete, and search records with a linear scan by id
+- persist and reload an object's full state as JSON
+- catch the classic `==` vs `=` bug, where a state update is silently skipped
+
 ## How to Run
 
 ```bash
@@ -209,6 +229,8 @@ python3 06_hash_table/valid_anagram.py
 python3 06_hash_table/group_anagrams.py
 python3 06_hash_table/intersection.py
 python3 06_hash_table/first_unique_char.py
+python3 08_oop_projects/todo_manager.py
+python3 08_oop_projects/library_manager.py
 ```
 
 Chapter 07 reads and writes files using relative filenames, so it must be run from inside its own folder instead of the repository root:
@@ -240,6 +262,9 @@ The most important idea was learning to choose the right data structure:
 - use a dictionary when a value needs related information such as a count, index, or group
 - read structured data with `csv.DictReader` / `json.load`, and remember CSV values arrive as strings
 - round or transform a value before storing it, not by operating on the whole collection afterward
+- store an object's state on `self.`, so every method shares the same data
+- recompute an id counter after loading saved data, instead of trusting its `__init__` default
+- double-check `==` vs `=` inside conditionals — a stray `==` silently does nothing instead of updating state
 
 This is the first part of a longer CS foundation learning process.
 

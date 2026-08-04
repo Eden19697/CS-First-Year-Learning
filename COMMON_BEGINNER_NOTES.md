@@ -93,3 +93,41 @@ if failed_subject:        # correct: true for 1 or more items
     failed[name] = failed_subject
 ```
 
+## OOP Mini-Projects
+
+### `==` compares, `=` assigns — mixing them up silently does nothing
+
+Inside an `if` block it's easy to write a comparison by accident when a state update was intended. Python doesn't
+error on this; it just quietly evaluates the comparison and throws away the result.
+
+```python
+# Wrong: this is a comparison, book["borrowed"] never changes
+book["borrowed"] == True
+
+# Right: this is an assignment
+book["borrowed"] = True
+```
+
+### Create every documented field up front, not only when it changes later
+
+If a record's shape is `{"id": ..., "title": ..., "completed": False}`, build it with all three fields immediately.
+Adding a field only inside a later method (like `complete_task`) means freshly created records are silently
+missing that key until something else touches them.
+
+```python
+# Wrong: "completed" only appears after complete_task() runs
+task = {"id": self.next_id, "title": title}
+
+# Right: every field exists from the start
+task = {"id": self.next_id, "title": title, "completed": False}
+```
+
+### Recompute the id counter after loading from a file
+
+`self.next_id` only knows about ids created during the current run. After `load_from_file`, it must be
+recalculated from the loaded data, or a new item can reuse an id that's already on disk.
+
+```python
+self.next_id = max(item["id"] for item in self.items) + 1 if self.items else 1
+```
+
