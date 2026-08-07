@@ -2,7 +2,7 @@
 
 This repository records my CS self-study with Python, organized chapter by chapter as I build my foundations.
 
-The current chapters focus on basic data structures, data processing, linear data structures, recursion, searching/sorting algorithms, tree-based structures, hash tables, file I/O, and object-oriented mini-projects.
+The current chapters focus on basic data structures, data processing, linear data structures, recursion, searching/sorting algorithms, tree-based structures, hash tables, file I/O, object-oriented mini-projects, and graphs.
 
 ## Topics
 
@@ -32,6 +32,8 @@ The current chapters focus on basic data structures, data processing, linear dat
 - reading and writing JSON files with the `json` module
 - classes with instance state (`self.`), auto-incrementing ids, and linear search by id
 - combining a class with JSON persistence to build a small working program
+- graph representation with an adjacency list, DFS, BFS, and a visited set
+- directed graphs, connected components, shortest path, and topological sort
 
 ## Exercises
 
@@ -203,6 +205,27 @@ Practice goals:
 - persist and reload an object's full state as JSON
 - catch the classic `==` vs `=` bug, where a state update is silently skipped
 
+### Graphs
+
+Files:
+
+```text
+09_graphs/graph_traversal.py
+09_graphs/directed_graph.py
+09_graphs/island_count.py
+09_graphs/topological_sort.py
+README.md
+```
+
+Practice goals:
+
+- represent a graph as an adjacency list, and build one from a list of edges
+- implement DFS and BFS with a visited set to handle cycles
+- check path existence, count connected components, and find shortest path with BFS
+- build a directed graph, adding an edge in only one direction
+- apply graph traversal to a 2D grid (island counting)
+- implement topological sort with Kahn's algorithm (indegree counting + a queue)
+
 ## How to Run
 
 ```bash
@@ -231,6 +254,10 @@ python3 06_hash_table/intersection.py
 python3 06_hash_table/first_unique_char.py
 python3 08_oop_projects/todo_manager.py
 python3 08_oop_projects/library_manager.py
+python3 09_graphs/graph_traversal.py
+python3 09_graphs/directed_graph.py
+python3 09_graphs/island_count.py
+python3 09_graphs/topological_sort.py
 ```
 
 Chapter 07 reads and writes files using relative filenames, so it must be run from inside its own folder instead of the repository root:
@@ -265,6 +292,8 @@ The most important idea was learning to choose the right data structure:
 - store an object's state on `self.`, so every method shares the same data
 - recompute an id counter after loading saved data, instead of trusting its `__init__` default
 - double-check `==` vs `=` inside conditionals — a stray `==` silently does nothing instead of updating state
+- mutate a dictionary directly (`graph[node].append(...)`) instead of a same-named local variable that never gets attached to it
+- only add a directed edge in one direction; use a visited set whenever a graph or grid can revisit the same node
 
 This is the first part of a longer CS foundation learning process.
 

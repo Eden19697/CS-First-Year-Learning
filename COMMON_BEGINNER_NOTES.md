@@ -131,3 +131,32 @@ recalculated from the loaded data, or a new item can reuse an id that's already 
 self.next_id = max(item["id"] for item in self.items) + 1 if self.items else 1
 ```
 
+## Graphs
+
+### Mutate the dictionary itself, not a same-named local variable
+
+`if node not in graph: a = []` creates a throwaway local variable called `a` — it never gets attached to `graph`.
+The fix is to assign directly into the dictionary being built.
+
+```python
+# Wrong: graph is never actually populated
+if node_a not in graph:
+    a = []
+a.append(node_b)
+
+# Right: mutate graph[node_a] directly
+if node_a not in graph:
+    graph[node_a] = []
+graph[node_a].append(node_b)
+```
+
+### Directed edges only go one way
+
+An undirected edge needs both `graph[a].append(b)` and `graph[b].append(a)`. A directed edge only gets the first
+line — adding the reverse turns a one-way graph into a two-way one and breaks reachability checks.
+
+### Remove debug `print()` calls before treating a function as finished
+
+A leftover `print(...)` inside a function still runs every time it's called — it doesn't affect correctness, but
+it means the actual output no longer matches what the docstring documents as "expected output."
+
