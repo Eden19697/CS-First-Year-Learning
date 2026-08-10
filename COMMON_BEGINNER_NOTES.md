@@ -160,3 +160,21 @@ line — adding the reverse turns a one-way graph into a two-way one and breaks 
 A leftover `print(...)` inside a function still runs every time it's called — it doesn't affect correctness, but
 it means the actual output no longer matches what the docstring documents as "expected output."
 
+## Heap / Priority Queue
+
+### A "peek" method must return the same shape as its matching "pop" method
+
+`heapq` stores whatever tuple you pushed — `(priority, task_name)` — not just the value you care about. A `pop`
+method that unpacks and returns only `task_name` needs its `peek` counterpart to do the same, or callers get a
+raw tuple back instead of the value the docstring promises.
+
+```python
+# Wrong: returns the whole (priority, task_name) tuple
+def peek_task(self):
+    return self.heap[0]
+
+# Right: return just the task name, matching pop_task's contract
+def peek_task(self):
+    return self.heap[0][1]
+```
+

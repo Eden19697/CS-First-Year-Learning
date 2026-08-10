@@ -2,7 +2,7 @@
 
 This repository records my CS self-study with Python, organized chapter by chapter as I build my foundations.
 
-The current chapters focus on basic data structures, data processing, linear data structures, recursion, searching/sorting algorithms, tree-based structures, hash tables, file I/O, object-oriented mini-projects, and graphs.
+The current chapters focus on basic data structures, data processing, linear data structures, recursion, searching/sorting algorithms, tree-based structures, hash tables, file I/O, object-oriented mini-projects, graphs, and heaps/priority queues.
 
 ## Topics
 
@@ -34,6 +34,8 @@ The current chapters focus on basic data structures, data processing, linear dat
 - combining a class with JSON persistence to build a small working program
 - graph representation with an adjacency list, DFS, BFS, and a visited set
 - directed graphs, connected components, shortest path, and topological sort
+- `heapq` min heaps, simulating a max heap with negation, and bounded "top-k" heaps
+- Dijkstra's shortest path algorithm
 
 ## Exercises
 
@@ -214,7 +216,7 @@ Files:
 09_graphs/directed_graph.py
 09_graphs/island_count.py
 09_graphs/topological_sort.py
-README.md
+09_graphs/README.md
 ```
 
 Practice goals:
@@ -225,6 +227,33 @@ Practice goals:
 - build a directed graph, adding an edge in only one direction
 - apply graph traversal to a 2D grid (island counting)
 - implement topological sort with Kahn's algorithm (indegree counting + a queue)
+
+### Heap / Priority Queue
+
+Files:
+
+```text
+10_heap_priority_queue/heap_basic.py
+10_heap_priority_queue/heapify_basic.py
+10_heap_priority_queue/max_heap_basic.py
+10_heap_priority_queue/k_largest.py
+10_heap_priority_queue/kth_largest.py
+10_heap_priority_queue/k_closest_points.py
+10_heap_priority_queue/top_k_frequent.py
+10_heap_priority_queue/priority_task_queue.py
+10_heap_priority_queue/merge_k_sorted_arrays.py
+10_heap_priority_queue/dijkstra_basic.py
+10_heap_priority_queue/README.md
+```
+
+Practice goals:
+
+- build and peek a min heap with `heapq.heappush`/`heappop`, and heapify an existing list in place
+- simulate a max heap by pushing and popping negated values
+- keep a bounded heap of size k to find the k largest/most frequent/closest items
+- push comparison tuples like `(priority, name)` or `(distance, point)` so the heap orders by the right field
+- wrap a heap in a class to build a priority task queue
+- merge k sorted arrays and implement Dijkstra's shortest path with a heap
 
 ## How to Run
 
@@ -258,6 +287,16 @@ python3 09_graphs/graph_traversal.py
 python3 09_graphs/directed_graph.py
 python3 09_graphs/island_count.py
 python3 09_graphs/topological_sort.py
+python3 10_heap_priority_queue/heap_basic.py
+python3 10_heap_priority_queue/heapify_basic.py
+python3 10_heap_priority_queue/max_heap_basic.py
+python3 10_heap_priority_queue/k_largest.py
+python3 10_heap_priority_queue/kth_largest.py
+python3 10_heap_priority_queue/k_closest_points.py
+python3 10_heap_priority_queue/top_k_frequent.py
+python3 10_heap_priority_queue/priority_task_queue.py
+python3 10_heap_priority_queue/merge_k_sorted_arrays.py
+python3 10_heap_priority_queue/dijkstra_basic.py
 ```
 
 Chapter 07 reads and writes files using relative filenames, so it must be run from inside its own folder instead of the repository root:
@@ -294,6 +333,9 @@ The most important idea was learning to choose the right data structure:
 - double-check `==` vs `=` inside conditionals — a stray `==` silently does nothing instead of updating state
 - mutate a dictionary directly (`graph[node].append(...)`) instead of a same-named local variable that never gets attached to it
 - only add a directed edge in one direction; use a visited set whenever a graph or grid can revisit the same node
+- reach for a heap instead of re-sorting when only the current min/max matters
+- keep a bounded heap of size k when only "the best k so far" is needed
+- keep peek/pop methods consistent about what they return — a wrapper method shouldn't leak the heap's raw internal tuple when its docstring promises just one field
 
 This is the first part of a longer CS foundation learning process.
 
