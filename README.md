@@ -2,7 +2,7 @@
 
 This repository records my CS self-study with Python, organized chapter by chapter as I build my foundations.
 
-The current chapters focus on basic data structures, data processing, linear data structures, recursion, searching/sorting algorithms, tree-based structures, hash tables, file I/O, object-oriented mini-projects, graphs, and heaps/priority queues.
+The current chapters focus on basic data structures, data processing, linear data structures, recursion, searching/sorting algorithms, tree-based structures, hash tables, file I/O, object-oriented mini-projects, graphs, heaps/priority queues, and two pointers/sliding window.
 
 ## Topics
 
@@ -36,6 +36,8 @@ The current chapters focus on basic data structures, data processing, linear dat
 - directed graphs, connected components, shortest path, and topological sort
 - `heapq` min heaps, simulating a max heap with negation, and bounded "top-k" heaps
 - Dijkstra's shortest path algorithm
+- opposite-direction and slow/fast two-pointer patterns
+- fixed-size and variable-size sliding windows
 
 ## Exercises
 
@@ -255,6 +257,30 @@ Practice goals:
 - wrap a heap in a class to build a priority task queue
 - merge k sorted arrays and implement Dijkstra's shortest path with a heap
 
+### Two Pointers / Sliding Window
+
+Files:
+
+```text
+11_two_pointers_sliding_window/two_sum_sorted.py
+11_two_pointers_sliding_window/valid_palindrome.py
+11_two_pointers_sliding_window/remove_duplicates.py
+11_two_pointers_sliding_window/max_sum_subarray_k.py
+11_two_pointers_sliding_window/minimum_size_subarray_sum.py
+11_two_pointers_sliding_window/longest_substring_without_repeat.py
+11_two_pointers_sliding_window/review_drill.py
+11_two_pointers_sliding_window/README.md
+```
+
+Practice goals:
+
+- use opposite-direction pointers on a sorted array and for palindrome checks
+- use slow/fast pointers to compact a sorted list in place
+- use a fixed-size sliding window to find the max sum of any subarray of size k
+- use a variable-size sliding window (expand right, shrink left in a `while`) for a minimum-length condition
+- track a window's contents with a `set` to find the longest substring without repeats
+- rewrite all four core templates from memory in a review drill
+
 ## How to Run
 
 ```bash
@@ -297,6 +323,13 @@ python3 10_heap_priority_queue/top_k_frequent.py
 python3 10_heap_priority_queue/priority_task_queue.py
 python3 10_heap_priority_queue/merge_k_sorted_arrays.py
 python3 10_heap_priority_queue/dijkstra_basic.py
+python3 11_two_pointers_sliding_window/two_sum_sorted.py
+python3 11_two_pointers_sliding_window/valid_palindrome.py
+python3 11_two_pointers_sliding_window/remove_duplicates.py
+python3 11_two_pointers_sliding_window/max_sum_subarray_k.py
+python3 11_two_pointers_sliding_window/minimum_size_subarray_sum.py
+python3 11_two_pointers_sliding_window/longest_substring_without_repeat.py
+python3 11_two_pointers_sliding_window/review_drill.py
 ```
 
 Chapter 07 reads and writes files using relative filenames, so it must be run from inside its own folder instead of the repository root:
@@ -336,6 +369,8 @@ The most important idea was learning to choose the right data structure:
 - reach for a heap instead of re-sorting when only the current min/max matters
 - keep a bounded heap of size k when only "the best k so far" is needed
 - keep peek/pop methods consistent about what they return — a wrapper method shouldn't leak the heap's raw internal tuple when its docstring promises just one field
+- use opposite-direction pointers only on sorted (or symmetric) data; use slow/fast pointers to compact a list in place
+- shrink a variable-size window with a `while` loop, not an `if`, since more than one shrink step may be needed
 
 This is the first part of a longer CS foundation learning process.
 
