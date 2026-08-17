@@ -2,7 +2,7 @@
 
 This repository records my CS self-study with Python, organized chapter by chapter as I build my foundations.
 
-The current chapters focus on basic data structures, data processing, linear data structures, recursion, searching/sorting algorithms, tree-based structures, hash tables, file I/O, object-oriented mini-projects, graphs, heaps/priority queues, and two pointers/sliding window.
+The current chapters focus on basic data structures, data processing, linear data structures, recursion, searching/sorting algorithms, tree-based structures, hash tables, file I/O, object-oriented mini-projects, graphs, heaps/priority queues, two pointers/sliding window, and dynamic programming.
 
 ## Topics
 
@@ -38,6 +38,9 @@ The current chapters focus on basic data structures, data processing, linear dat
 - Dijkstra's shortest path algorithm
 - opposite-direction and slow/fast two-pointer patterns
 - fixed-size and variable-size sliding windows
+- defining `dp[i]`, base cases, and transitions for dynamic programming
+- DP over "skip vs. take" choices, minimum-cost choices, and unbounded item choices
+- compressing a DP list down to a couple of variables once the transition only looks back 1-2 steps
 
 ## Exercises
 
@@ -281,6 +284,28 @@ Practice goals:
 - track a window's contents with a `set` to find the longest substring without repeats
 - rewrite all four core templates from memory in a review drill
 
+### Dynamic Programming Intro
+
+Files:
+
+```text
+12_dynamic_programming_intro/fibonacci_dp.py
+12_dynamic_programming_intro/climbing_stairs.py
+12_dynamic_programming_intro/min_cost_climbing_stairs.py
+12_dynamic_programming_intro/house_robber.py
+12_dynamic_programming_intro/coin_change_intro.py
+12_dynamic_programming_intro/dp_review_drill.py
+12_dynamic_programming_intro/README.md
+```
+
+Practice goals:
+
+- compare plain recursion, a DP list, and a two-variable DP for Fibonacci and climbing stairs
+- write a `min`-based transition for a minimum-cost variant instead of a sum-based one
+- write a "skip vs. take" transition under a non-adjacency constraint (house robber)
+- write an unbounded-choice transition that tries every coin at each amount (coin change)
+- rewrite all five DP patterns from memory in a review drill
+
 ## How to Run
 
 ```bash
@@ -330,6 +355,12 @@ python3 11_two_pointers_sliding_window/max_sum_subarray_k.py
 python3 11_two_pointers_sliding_window/minimum_size_subarray_sum.py
 python3 11_two_pointers_sliding_window/longest_substring_without_repeat.py
 python3 11_two_pointers_sliding_window/review_drill.py
+python3 12_dynamic_programming_intro/fibonacci_dp.py
+python3 12_dynamic_programming_intro/climbing_stairs.py
+python3 12_dynamic_programming_intro/min_cost_climbing_stairs.py
+python3 12_dynamic_programming_intro/house_robber.py
+python3 12_dynamic_programming_intro/coin_change_intro.py
+python3 12_dynamic_programming_intro/dp_review_drill.py
 ```
 
 Chapter 07 reads and writes files using relative filenames, so it must be run from inside its own folder instead of the repository root:
@@ -371,6 +402,9 @@ The most important idea was learning to choose the right data structure:
 - keep peek/pop methods consistent about what they return — a wrapper method shouldn't leak the heap's raw internal tuple when its docstring promises just one field
 - use opposite-direction pointers only on sorted (or symmetric) data; use slow/fast pointers to compact a list in place
 - shrink a variable-size window with a `while` loop, not an `if`, since more than one shrink step may be needed
+- state what `dp[i]` means in one sentence before writing any transition — the recurrence follows naturally once the definition is clear
+- match the combining operation to the question: `max` for "best of skip/take", `min` for "cheapest way in", a loop over every choice for unbounded items
+- initialize a minimum-seeking DP table with `float("inf")`, not `0`, so untouched entries can't be mistaken for a real answer
 
 This is the first part of a longer CS foundation learning process.
 
