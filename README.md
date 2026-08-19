@@ -2,7 +2,7 @@
 
 This repository records my CS self-study with Python, organized chapter by chapter as I build my foundations.
 
-The current chapters focus on basic data structures, data processing, linear data structures, recursion, searching/sorting algorithms, tree-based structures, hash tables, file I/O, object-oriented mini-projects, graphs, heaps/priority queues, two pointers/sliding window, and dynamic programming.
+The current chapters focus on basic data structures, data processing, linear data structures, recursion, searching/sorting algorithms, tree-based structures, hash tables, file I/O, object-oriented mini-projects, graphs, heaps/priority queues, two pointers/sliding window, dynamic programming, and backtracking.
 
 ## Topics
 
@@ -41,6 +41,9 @@ The current chapters focus on basic data structures, data processing, linear dat
 - defining `dp[i]`, base cases, and transitions for dynamic programming
 - DP over "skip vs. take" choices, minimum-cost choices, and unbounded item choices
 - compressing a DP list down to a couple of variables once the transition only looks back 1-2 steps
+- backtracking with choose/explore/un-choose, using `path.append`/`pop`, a `used` list, or a `visited` set
+- reuse-allowed vs. use-once-per-position choices (same index vs. `index + 1`) in combination search
+- backtracking over a 2D grid with a path-scoped `visited` set
 
 ## Exercises
 
@@ -306,6 +309,33 @@ Practice goals:
 - write an unbounded-choice transition that tries every coin at each amount (coin change)
 - rewrite all five DP patterns from memory in a review drill
 
+### Backtracking Intro
+
+Files:
+
+```text
+13_backtracking_intro/subsets.py
+13_backtracking_intro/subsets_practice.py
+13_backtracking_intro/permutations.py
+13_backtracking_intro/combination_sum.py
+13_backtracking_intro/combination_sum_once.py
+13_backtracking_intro/generate_parentheses.py
+13_backtracking_intro/phone_letter_combinations.py
+13_backtracking_intro/word_search.py
+13_backtracking_intro/backtracking_review_drill.py
+13_backtracking_intro/README.md
+```
+
+Practice goals:
+
+- generate every subset with a binary skip/include choice per element
+- generate every permutation using a `used` list to track what's already placed
+- distinguish "candidate may be reused" from "position used at most once" via the recursive index
+- generate valid parentheses with two constrained choices instead of one binary choice
+- pull choices from a lookup table (phone keypad letters) instead of a fixed list
+- backtrack over a 2D grid with a path-scoped `visited` set
+- rewrite all seven backtracking patterns from memory in a review drill
+
 ## How to Run
 
 ```bash
@@ -361,6 +391,15 @@ python3 12_dynamic_programming_intro/min_cost_climbing_stairs.py
 python3 12_dynamic_programming_intro/house_robber.py
 python3 12_dynamic_programming_intro/coin_change_intro.py
 python3 12_dynamic_programming_intro/dp_review_drill.py
+python3 13_backtracking_intro/subsets.py
+python3 13_backtracking_intro/subsets_practice.py
+python3 13_backtracking_intro/permutations.py
+python3 13_backtracking_intro/combination_sum.py
+python3 13_backtracking_intro/combination_sum_once.py
+python3 13_backtracking_intro/generate_parentheses.py
+python3 13_backtracking_intro/phone_letter_combinations.py
+python3 13_backtracking_intro/word_search.py
+python3 13_backtracking_intro/backtracking_review_drill.py
 ```
 
 Chapter 07 reads and writes files using relative filenames, so it must be run from inside its own folder instead of the repository root:
@@ -405,6 +444,8 @@ The most important idea was learning to choose the right data structure:
 - state what `dp[i]` means in one sentence before writing any transition — the recurrence follows naturally once the definition is clear
 - match the combining operation to the question: `max` for "best of skip/take", `min` for "cheapest way in", a loop over every choice for unbounded items
 - initialize a minimum-seeking DP table with `float("inf")`, not `0`, so untouched entries can't be mistaken for a real answer
+- every state change made before a recursive call (`path.append`, marking something used/visited) needs a matching undo line after it, or sibling branches see leftover state
+- "may be reused" recurses with the same index; "used at most once" recurses with `index + 1` (or a `used` list) — this single difference is what separates `combination_sum` from `combination_sum_once`
 
 This is the first part of a longer CS foundation learning process.
 
