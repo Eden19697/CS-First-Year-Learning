@@ -2,7 +2,7 @@
 
 This repository records my CS self-study with Python, organized chapter by chapter as I build my foundations.
 
-The current chapters focus on basic data structures, data processing, linear data structures, recursion, searching/sorting algorithms, tree-based structures, hash tables, file I/O, object-oriented mini-projects, graphs, heaps/priority queues, two pointers/sliding window, dynamic programming, and backtracking.
+The current chapters focus on basic data structures, data processing, linear data structures, recursion, searching/sorting algorithms, tree-based structures, hash tables, file I/O, object-oriented mini-projects, graphs, heaps/priority queues, two pointers/sliding window, dynamic programming, backtracking, and greedy algorithms.
 
 ## Topics
 
@@ -44,6 +44,7 @@ The current chapters focus on basic data structures, data processing, linear dat
 - backtracking with choose/explore/un-choose, using `path.append`/`pop`, a `used` list, or a `visited` set
 - reuse-allowed vs. use-once-per-position choices (same index vs. `index + 1`) in combination search
 - backtracking over a 2D grid with a path-scoped `visited` set
+- greedy interval scheduling, reachability, partition boundaries, and one-pass optimization
 
 ## Exercises
 
@@ -336,6 +337,33 @@ Practice goals:
 - backtrack over a 2D grid with a path-scoped `visited` set
 - rewrite all seven backtracking patterns from memory in a review drill
 
+### Greedy Algorithms
+
+Files:
+
+```text
+14_greedy_algorithms/interval_scheduling.py
+14_greedy_algorithms/greedy_coin_change.py
+14_greedy_algorithms/assign_cookies.py
+14_greedy_algorithms/jump_game.py
+14_greedy_algorithms/min_arrows_balloons.py
+14_greedy_algorithms/partition_labels.py
+14_greedy_algorithms/best_time_stock.py
+14_greedy_algorithms/greedy_review_drill.py
+14_greedy_algorithms/README.md
+```
+
+Practice goals:
+
+- select the maximum number of non-overlapping intervals by taking the earliest finish time
+- distinguish a useful greedy coin rule from a guaranteed minimum-coin solution
+- match sorted resources with sorted requirements using two pointers
+- track the furthest reachable index in Jump Game
+- reuse an arrow at the earliest ending position while it still intersects later balloons
+- extend a string partition to the last occurrence of every character it contains
+- calculate a one-transaction stock profit by tracking the lowest earlier price
+- explain each greedy choice and its invariant before writing the implementation
+
 ## How to Run
 
 ```bash
@@ -400,6 +428,14 @@ python3 13_backtracking_intro/generate_parentheses.py
 python3 13_backtracking_intro/phone_letter_combinations.py
 python3 13_backtracking_intro/word_search.py
 python3 13_backtracking_intro/backtracking_review_drill.py
+python3 14_greedy_algorithms/interval_scheduling.py
+python3 14_greedy_algorithms/greedy_coin_change.py
+python3 14_greedy_algorithms/assign_cookies.py
+python3 14_greedy_algorithms/jump_game.py
+python3 14_greedy_algorithms/min_arrows_balloons.py
+python3 14_greedy_algorithms/partition_labels.py
+python3 14_greedy_algorithms/best_time_stock.py
+python3 14_greedy_algorithms/greedy_review_drill.py
 ```
 
 Chapter 07 reads and writes files using relative filenames, so it must be run from inside its own folder instead of the repository root:
@@ -446,6 +482,7 @@ The most important idea was learning to choose the right data structure:
 - initialize a minimum-seeking DP table with `float("inf")`, not `0`, so untouched entries can't be mistaken for a real answer
 - every state change made before a recursive call (`path.append`, marking something used/visited) needs a matching undo line after it, or sibling branches see leftover state
 - "may be reused" recurses with the same index; "used at most once" recurses with `index + 1` (or a `used` list) — this single difference is what separates `combination_sum` from `combination_sum_once`
+- make a greedy choice only when its invariant explains why it leaves an optimal future state
+- choose the right state for a one-pass greedy solution: an earliest end, furthest reach, last occurrence, or lowest earlier price
 
 This is the first part of a longer CS foundation learning process.
-
