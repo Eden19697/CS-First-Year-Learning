@@ -2,7 +2,7 @@
 
 This repository records my CS self-study with Python, organized chapter by chapter as I build my foundations.
 
-The current chapters focus on basic data structures, data processing, linear data structures, recursion, searching/sorting algorithms, tree-based structures, hash tables, file I/O, object-oriented mini-projects, graphs, heaps/priority queues, two pointers/sliding window, dynamic programming, backtracking, and greedy algorithms.
+The current chapters focus on basic data structures, data processing, linear data structures, recursion, searching/sorting algorithms, tree-based structures, hash tables, file I/O, object-oriented mini-projects, graphs, heaps/priority queues, two pointers/sliding window, dynamic programming, backtracking, greedy algorithms, and Big-O complexity analysis.
 
 ## Topics
 
@@ -45,6 +45,7 @@ The current chapters focus on basic data structures, data processing, linear dat
 - reuse-allowed vs. use-once-per-position choices (same index vs. `index + 1`) in combination search
 - backtracking over a 2D grid with a path-scoped `visited` set
 - greedy interval scheduling, reachability, partition boundaries, and one-pass optimization
+- time and extra-space complexity for sequential, nested, sorting, set-based, and binary-search code
 
 ## Exercises
 
@@ -364,6 +365,24 @@ Practice goals:
 - calculate a one-transaction stock profit by tracking the lowest earlier price
 - explain each greedy choice and its invariant before writing the implementation
 
+### Big-O Complexity
+
+Files:
+
+```text
+15_big_o_complexity/big_o_examples.py
+15_big_o_complexity/big_o_review_drill.py
+15_big_o_complexity/README.md
+```
+
+Practice goals:
+
+- distinguish worst-case time complexity from extra-space complexity
+- identify O(n) sequential scans, O(n²) nested loops, O(n log n) sorting work, and O(log n) repeated halving
+- compare duplicate detection with a set against sorting and brute-force pair checking
+- recognize that a loop around binary search is O(n log n), not O(log n)
+- explain the line or state responsible for each complexity cost
+
 ## How to Run
 
 ```bash
@@ -436,6 +455,8 @@ python3 14_greedy_algorithms/min_arrows_balloons.py
 python3 14_greedy_algorithms/partition_labels.py
 python3 14_greedy_algorithms/best_time_stock.py
 python3 14_greedy_algorithms/greedy_review_drill.py
+python3 15_big_o_complexity/big_o_examples.py
+python3 15_big_o_complexity/big_o_review_drill.py
 ```
 
 Chapter 07 reads and writes files using relative filenames, so it must be run from inside its own folder instead of the repository root:
@@ -484,5 +505,7 @@ The most important idea was learning to choose the right data structure:
 - "may be reused" recurses with the same index; "used at most once" recurses with `index + 1` (or a `used` list) — this single difference is what separates `combination_sum` from `combination_sum_once`
 - make a greedy choice only when its invariant explains why it leaves an optimal future state
 - choose the right state for a one-pass greedy solution: an earliest end, furthest reach, last occurrence, or lowest earlier price
+- analyze both time and extra space: a linear scan can use O(1) space, while a set-based scan trades O(n) space for average O(n) time
+- multiply costs for genuinely nested work, but add sequential costs and keep the dominant term
 
 This is the first part of a longer CS foundation learning process.
